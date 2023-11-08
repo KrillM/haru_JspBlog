@@ -17,9 +17,8 @@ public class BoardController {
     private BoardService boardService;
 
     @GetMapping("/")
-    public String index(Model model,
-                        @PageableDefault(size = 3, sort = "id", direction = Sort.Direction.DESC)
-                        Pageable pageable){
+    public String index(@PageableDefault(size = 3, sort = "id", direction = Sort.Direction.DESC)
+                        Model model, Pageable pageable){
         model.addAttribute("boards", boardService.postList(pageable));
         return "index"; // viewResolver 작동!
     }

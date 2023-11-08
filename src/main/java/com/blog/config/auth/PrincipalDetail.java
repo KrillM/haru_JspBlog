@@ -14,6 +14,7 @@ import java.util.Collection;
 @Getter
 @Setter
 public class PrincipalDetail implements UserDetails {
+
     private User user; // 콤포지션
 
     public PrincipalDetail(User user) {

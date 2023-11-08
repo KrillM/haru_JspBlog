@@ -9,20 +9,20 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Getter // 영상에서는 @Data라고 하지만 @Data = Getter+Setter라고 봐도 됩니다
+@Getter // 영상에서는 @Data라고 하지만 @Data = Getter+Setter 라고 봐도 됩니다
 @Setter // 에러 발생한다면 @Data로 변경하면 될 거 같아요
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder // 빌더 패턴
 public class Board {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, length = 100)
     private String title;
 
-    @Lob // 대용량 데이터 사용할때 씁니다
+    @Lob // 대용량 데이터 사용할 때 씁니다
     private String content; // 썸머노트 라이브러리<html>태그가 섞여서 디자인 됩니다.
 
     private int count; // 조회수
