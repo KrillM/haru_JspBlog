@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class UserController {
+
     @GetMapping("/auth/joinForm")
     public String joinForm(){
         return "user/joinForm";
@@ -25,4 +26,5 @@ public class UserController {
     public String updateForm(@AuthenticationPrincipal PrincipalDetail principal){
         return "user/updateForm";
     }
+
 }
