@@ -14,13 +14,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service // 스프링이 컴포넌트 스캔을 통해서 Bean 등록을 해줌, IoC 해준다
+@Transactional
 public class BoardService {
 
     // 게시글
     @Autowired
     private BoardRepository boardRepository;
 
-    @Transactional
     public void createPost(Board board, User user){
         board.setCount(0);
         board.setUser(user);
@@ -40,12 +40,10 @@ public class BoardService {
             });
     }
 
-    @Transactional
     public void deletePost(Long id){
         boardRepository.deleteById(id);
     }
 
-    @Transactional
     public void updatePost(Long id, Board requestBoard){
         Board board = boardRepository.findById(id)
             .orElseThrow(()->{
@@ -64,7 +62,6 @@ public class BoardService {
     @Autowired
     private ReplyRepository replyRepository;
 
-    @Transactional
     public void createReply(ReplySaveRequestDto replySaveRequestDto){
 
         // 방법 1
@@ -88,7 +85,6 @@ public class BoardService {
         replyRepository.mSave(replySaveRequestDto.getUserId(),replySaveRequestDto.getBoardId(), replySaveRequestDto.getContent());
     }
 
-    @Transactional
     public void replyDelete(Long replyId) {
         replyRepository.deleteById(replyId);
     }

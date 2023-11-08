@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service // 스프링이 컴포넌트 스캔을 통해서 Bean 등록을 해줌, IoC 해준다
+@Transactional
 public class UserService {
     @Autowired
     private UserRepository userRepository;
@@ -23,7 +24,6 @@ public class UserService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Transactional
     public void createCrew(User user){
         String rawPassword = user.getPassword(); // 원래대로 적으면
         String encPassword = encoder.encode(rawPassword); // 여기서 해쉬화(암호화)
@@ -32,7 +32,6 @@ public class UserService {
         userRepository.save(user);
     }
 
-    @Transactional
     public void updateCrew(User user){
         // 수정시 영속성 컨텍스트 User 오브젝트 영속화, 영속화된 User 오브젝트 수정
         // select 해서 User 오브젝트를 db로부터 가져오는 이유는 영속화 하기 위해서다
